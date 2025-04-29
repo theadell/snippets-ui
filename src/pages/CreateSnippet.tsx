@@ -15,7 +15,6 @@ import {
 import { SnippetsService } from '../api/services/SnippetsService';
 import { addLocalSnippet } from '../utils/storage';
 import { SnippetFormData } from '../types/snippet';
-import { SnippetCreateResponse } from '../api/models/SnippetCreateResponse';
 
 const CreateSnippet = () => {
   const navigate = useNavigate();
@@ -30,12 +29,13 @@ const CreateSnippet = () => {
       const response = await SnippetsService.createSnippet(formData);
       addLocalSnippet({
         id: response.id,
-        editToken: response.editToken,
+        editToken: response.editToken!,
         expiresAt: response.expiresAt,
         title: formData.title,
       });
       navigate(`/snippet/${response.id}`);
     } catch (error) {
+      console.error(error)
       setError('Failed to create snippet. Please try again.');
     }
   };

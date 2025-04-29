@@ -8,9 +8,17 @@ export type SnippetResponse = {
      */
     id: string;
     /**
+     * Title of the snippet
+     */
+    title?: string;
+    /**
      * The decrypted snippet content
      */
     content: string;
+    /**
+     * Type of the content of the snippet
+     */
+    contentType?: string;
     /**
      * ISO 8601 timestamp when the snippet was created
      */

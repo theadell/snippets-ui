@@ -38,8 +38,10 @@ const EditSnippet = () => {
         const response = await SnippetsService.getSnippet(id!);
         setFormData({
           content: response.content,
+          title: response.title,
         });
       } catch (error) {
+        console.error(error)
         setError('Failed to load snippet. It may have expired or been deleted.');
       }
     };
@@ -55,6 +57,7 @@ const EditSnippet = () => {
       await SnippetsService.updateSnippet(id!, editToken, formData);
       navigate(`/snippet/${id}`);
     } catch (error) {
+      console.error(error)
       setError('Failed to update snippet. Please try again.');
     }
   };
